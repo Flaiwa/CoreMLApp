@@ -74,3 +74,21 @@ final class FrameHandler: NSObject {
         }
     }
 }
+extension FrameHandler: AVCaptureVideoDataOutputSampleBufferDelegate {
+    func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+        guard
+            let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+        else { return }
+
+        // Publish pixel buffer for Vision on a background thread
+        if let onNewPixelBuffer {
+            onNewPixelBuffer(imageBuffer)
+        }
+        let ciImage = CIImage(cvPixelBuffer: imageBuffer)
+        guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return }
+        // on main thread update UI
+        DispatchQueue.main.async { [onNewFrame] in
+            onNewFrame?(cgImage)
+        }
+    }
+}

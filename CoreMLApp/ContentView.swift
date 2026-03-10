@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct ContentView: View {
+    private var model = FrameHandler()
+    
     var body: some View {
         VStack {
-            
+            // live camera
+            FrameView(image: model.frame)
+                .ignoresSafeArea()
         }
         .padding()
     }
