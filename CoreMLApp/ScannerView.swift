@@ -8,9 +8,6 @@ import SwiftUI
 struct ScannerView: View {
     @State private var viewModel = CameraViewModel()
 
-    @State private var showAlert = false
-    @State private var detectedRouterName = ""
-
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -66,12 +63,6 @@ struct ScannerView: View {
         }
         .onDisappear {
             viewModel.stopCamera()
-        }
-        .onChange(of: viewModel.lastDetectedRouter) { _, newValue in
-            if let name = newValue {
-                detectedRouterName = name
-                showAlert = true
-            }
         }
     }
 }
