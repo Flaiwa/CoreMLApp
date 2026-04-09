@@ -2,13 +2,6 @@
 //  ScannerView.swift
 //  CoreMLApp
 //
-//  Created by Ihub Innopot on 09.04.26.
-//
-
-//
-//  ScannerView.swift
-//  CoreMLApp
-//
 
 import SwiftUI
 
@@ -22,11 +15,10 @@ struct ScannerView: View {
 
     var body: some View {
         ZStack {
-            // Live-Kamera
+    
             FrameView(image: viewModel.frame)
                 .ignoresSafeArea()
 
-            // Overlay for bounding boxes
             GeometryReader { geometry in
                 ForEach(viewModel.detections) { det in
                     let rect = det.boundingBox
@@ -60,14 +52,13 @@ struct ScannerView: View {
                             .font(.title)
                             .foregroundStyle(.white)
                             .shadow(radius: 4)
-                            .padding()
+                            .padding(20)
                     }
                     Spacer()
                 }
                 Spacer()
             }
         }
-        .navigationBarHidden(true)
         .onAppear {
             Task {
                 await viewModel.startCamera()
@@ -84,6 +75,7 @@ struct ScannerView: View {
         }
     }
 }
-#Preview{
+
+#Preview {
     ScannerView()
 }
