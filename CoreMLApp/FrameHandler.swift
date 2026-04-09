@@ -2,8 +2,7 @@
 //  FrameHandler.swift
 //  CoreMLApp
 //
-//  Created by Ihub Innopot on 10.03.26.
-//
+
 
 import AVFoundation
 import CoreImage
@@ -11,6 +10,7 @@ import CoreImage
 final class FrameHandler: NSObject {
    
     var onNewFrame: ((CGImage) -> Void)?
+    
     var onNewPixelBuffer: ((CVPixelBuffer) -> Void)?
 
     private let captureSession = AVCaptureSession()
@@ -74,6 +74,7 @@ final class FrameHandler: NSObject {
         }
     }
 }
+
 extension FrameHandler: AVCaptureVideoDataOutputSampleBufferDelegate {
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard

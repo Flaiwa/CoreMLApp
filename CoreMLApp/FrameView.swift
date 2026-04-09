@@ -2,8 +2,6 @@
 //  FrameView.swift
 //  CoreMLApp
 //
-//  Created by Ihub Innopot on 10.03.26.
-//
 
 import SwiftUI
 
