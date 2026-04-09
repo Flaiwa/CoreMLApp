@@ -19,7 +19,7 @@ struct ContentView: View {
                     // App-Icon / Titel
                     Image(systemName: "camera.viewfinder")
                         .font(.system(size: 150))
-                        .foregroundStyle(.black)
+                        .foregroundStyle(.green)
  
                     Text("Router Scanner")
                         .font(.largeTitle)
@@ -39,12 +39,12 @@ struct ContentView: View {
                             .padding(.vertical, 16)
                     }
                     .buttonStyle(.borderedProminent)
-                    .tint(.black)
+                    .tint(.green)
                     .controlSize(.large)
                 }
             }
             .fullScreenCover(isPresented: $isShowingScanner) {
-                //ScannerView()
+                ScannerView()
             }
         }
     }
