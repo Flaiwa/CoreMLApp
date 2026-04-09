@@ -29,20 +29,38 @@
 		13C851CD2F6001FE002ECD3B /* CoreMLAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreMLAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		13F0EDCD2F87ADD300D84073 /* Exceptions for "CoreMLApp" folder in "CoreMLApp" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CoreMLAppUITests/CoreMLAppUITests.swift,
+				CoreMLAppUITests/CoreMLAppUITestsLaunchTests.swift,
+			);
+			target = 13C851B52F6001FB002ECD3B /* CoreMLApp */;
+		};
+		13F0EDCE2F87ADD300D84073 /* Exceptions for "CoreMLApp" folder in "CoreMLAppUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CoreMLAppUITests/CoreMLAppUITests.swift,
+				CoreMLAppUITests/CoreMLAppUITestsLaunchTests.swift,
+			);
+			target = 13C851CC2F6001FE002ECD3B /* CoreMLAppUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		13C851B82F6001FB002ECD3B /* CoreMLApp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				13F0EDCD2F87ADD300D84073 /* Exceptions for "CoreMLApp" folder in "CoreMLApp" target */,
+				13F0EDCE2F87ADD300D84073 /* Exceptions for "CoreMLApp" folder in "CoreMLAppUITests" target */,
+			);
 			path = CoreMLApp;
 			sourceTree = "<group>";
 		};
 		13C851C62F6001FE002ECD3B /* CoreMLAppTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = CoreMLAppTests;
-			sourceTree = "<group>";
-		};
-		13C851D02F6001FE002ECD3B /* CoreMLAppUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = CoreMLAppUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -77,7 +95,6 @@
 			children = (
 				13C851B82F6001FB002ECD3B /* CoreMLApp */,
 				13C851C62F6001FE002ECD3B /* CoreMLAppTests */,
-				13C851D02F6001FE002ECD3B /* CoreMLAppUITests */,
 				13C851B72F6001FB002ECD3B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,9 +169,6 @@
 			);
 			dependencies = (
 				13C851CF2F6001FE002ECD3B /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				13C851D02F6001FE002ECD3B /* CoreMLAppUITests */,
 			);
 			name = CoreMLAppUITests;
 			packageProductDependencies = (
