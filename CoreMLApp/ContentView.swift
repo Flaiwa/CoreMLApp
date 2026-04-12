@@ -48,7 +48,7 @@ struct ContentView: View {
                 } label: {
                     Image(systemName: "info.circle.fill")
                         .font(.title2)
-                        .foregroundStyle(.primary)
+                        .foregroundStyle(.green)
                         .padding(20)
                 }
             }
