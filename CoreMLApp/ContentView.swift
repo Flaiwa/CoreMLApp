@@ -7,6 +7,7 @@ import SwiftUI
  
 struct ContentView: View {
     @State private var isShowingScanner = false
+    @State private var isShowingModelInfo = false
  
     var body: some View {
         NavigationStack {
@@ -41,8 +42,21 @@ struct ContentView: View {
                     .controlSize(.large)
                 }
             }
+            .overlay(alignment: .topLeading){
+                Button{
+                    isShowingModelInfo = true
+                } label: {
+                    Image(systemName: "info.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(.primary)
+                        .padding(20)
+                }
+            }
             .fullScreenCover(isPresented: $isShowingScanner) {
                 ScannerView()
+            }
+            .sheet(isPresented: $isShowingModelInfo){
+                ModelInfoView()
             }
         }
     }

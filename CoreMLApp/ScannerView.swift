@@ -57,6 +57,7 @@ struct ScannerView: View {
             }
         }
         .onAppear {
+            viewModel.loadSelectedModel()
             Task {
                 await viewModel.startCamera()
             }
