@@ -2,8 +2,6 @@
 //  FrameView.swift
 //  CoreMLApp
 //
-//  Created by Ihub Innopot on 10.03.26.
-//
 
 import SwiftUI
 
@@ -14,6 +12,8 @@ struct FrameView: View {
     var body: some View {
         if let image = image{
             Image(image, scale: 1.0, orientation: .up, label: label)
+                .resizable()
+                .scaledToFill()
         }
         else{
             Color.black
