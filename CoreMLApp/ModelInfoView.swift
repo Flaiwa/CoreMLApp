@@ -2,14 +2,6 @@
 //  ModelInfoView.swift
 //  CoreMLApp
 //
-//  Created by Ihub Innopot on 12.04.26.
-//
-
-
-//
-//  ModelInfoView.swift
-//  CoreMLApp
-//
 
 import SwiftUI
 
@@ -22,7 +14,7 @@ struct ModelInfoView: View {
     var body: some View {
         NavigationStack {
             List {
-                // Verfügbare Modelle
+                
                 Section("Verfügbare Modelle") {
                     ForEach(modelManager.availableModels) { model in
                         Button {

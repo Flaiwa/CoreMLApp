@@ -1,12 +1,4 @@
 //
-//  ModelInfo.swift
-//  CoreMLApp
-//
-//  Created by Ihub Innopot on 12.04.26.
-//
-
-
-//
 //  ModelManager.swift
 //  CoreMLApp
 //
@@ -25,7 +17,7 @@ struct ModelInfo: Identifiable, Hashable {
 final class ModelManager {
 
     static let shared = ModelManager()
-
+    
     var availableModels: [ModelInfo] = []
     var selectedModel: ModelInfo?
 
@@ -33,7 +25,7 @@ final class ModelManager {
 
     private init() {
         loadAvailableModels()
-        // Erstes Modell automatisch auswählen
+        // select automaticly first Ml modell
         if selectedModel == nil {
             selectedModel = availableModels.first
         }
@@ -59,15 +51,15 @@ final class ModelManager {
 
         availableModels.sort { $0.id < $1.id }
     }
-
+    
     private func extractClassNames(from url: URL) -> [String] {
         do {
             let model = try MLModel(contentsOf: url)
 
-            // YOLO-Modelle speichern Klassen im "names" Metadata-Feld
+     
             if let metadata = model.modelDescription.metadata[.creatorDefinedKey] as? [String: String],
                let namesString = metadata["names"] {
-                // Format: {0: 'ClassName1', 1: 'ClassName2', ...}
+                
                 return parseClassNames(from: namesString)
             }
 
