@@ -15,7 +15,8 @@ struct ScannerView: View {
     
             FrameView(image: viewModel.frame)
                 .ignoresSafeArea()
-
+            
+            //for the bounding boxes
             GeometryReader { geometry in
                 ForEach(viewModel.detections) { det in
                     let rect = det.boundingBox

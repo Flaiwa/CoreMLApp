@@ -1,12 +1,4 @@
 //
-//  ModelInfo.swift
-//  CoreMLApp
-//
-//  Created by Ihub Innopot on 12.04.26.
-//
-
-
-//
 //  ModelManager.swift
 //  CoreMLApp
 //
@@ -16,8 +8,8 @@ import CoreML
 import OSLog
 
 struct ModelInfo: Identifiable, Hashable {
-    let id: String          // dateiname ohne Extension
-    let url: URL            // pfad zur .mlmodelc
+    let id: String
+    let url: URL
     let classNames: [String]
 }
 
@@ -25,7 +17,7 @@ struct ModelInfo: Identifiable, Hashable {
 final class ModelManager {
 
     static let shared = ModelManager()
-
+    
     var availableModels: [ModelInfo] = []
     var selectedModel: ModelInfo?
 
@@ -33,13 +25,12 @@ final class ModelManager {
 
     private init() {
         loadAvailableModels()
-        // Erstes Modell automatisch auswählen
+        // select automaticly first Ml modell
         if selectedModel == nil {
             selectedModel = availableModels.first
         }
     }
 
-    /// Sucht alle .mlmodelc Dateien im App-Bundle
     private func loadAvailableModels() {
         guard let bundlePath = Bundle.main.resourcePath else { return }
 
@@ -60,20 +51,18 @@ final class ModelManager {
 
         availableModels.sort { $0.id < $1.id }
     }
-
-    /// Liest die Klassennamen aus den Modell-Metadaten
+    
     private func extractClassNames(from url: URL) -> [String] {
         do {
             let model = try MLModel(contentsOf: url)
 
-            // YOLO-Modelle speichern Klassen im "names" Metadata-Feld
+     
             if let metadata = model.modelDescription.metadata[.creatorDefinedKey] as? [String: String],
                let namesString = metadata["names"] {
-                // Format: {0: 'ClassName1', 1: 'ClassName2', ...}
+                
                 return parseClassNames(from: namesString)
             }
 
-            // Fallback: Klassen aus den Output-Features lesen
             if let classLabel = model.modelDescription.classLabels as? [String] {
                 return classLabel
             }
@@ -85,11 +74,9 @@ final class ModelManager {
         }
     }
 
-    /// Parst den YOLO names-String: {0: 'Name1', 1: 'Name2', ...}
     private func parseClassNames(from namesString: String) -> [String] {
         var classes: [(Int, String)] = []
 
-        // Regex: Zahl: 'Name'
         let pattern = #"(\d+):\s*'([^']+)'"#
         guard let regex = try? NSRegularExpression(pattern: pattern) else { return [] }
 
@@ -104,7 +91,6 @@ final class ModelManager {
             }
         }
 
-        // Nach Index sortieren
         classes.sort { $0.0 < $1.0 }
         return classes.map { $0.1 }
     }
