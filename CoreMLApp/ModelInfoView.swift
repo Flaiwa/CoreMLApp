@@ -103,7 +103,6 @@ struct InfoRow: View {
         }
     }
 }
-
 #Preview {
     ModelInfoView()
 }

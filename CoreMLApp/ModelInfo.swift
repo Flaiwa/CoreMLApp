@@ -100,3 +100,10 @@ final class ModelManager {
         logger.info("Modell gewechselt zu: \(model.id)")
     }
 }
+#if DEBUG
+extension ModelManager {
+    func parseClassNamesForTesting(from string: String) -> [String] {
+        return parseClassNames(from: string)
+    }
+}
+#endif
