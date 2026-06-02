@@ -17,7 +17,7 @@ final class CoreMLAppTests: XCTestCase {
         XCTAssertEqual(
             result,
             ["TelekomRouter", "FritzBoxRouter", "FritzBoxRepeater"],
-            "Klassen muessen in der Reihenfolge ihrer Indizes zurueckgegeben werden."
+            "Klassen müssen in der Reihenfolge ihrer Indizes zurückgegeben werden."
         )
     }
 
@@ -41,7 +41,7 @@ final class CoreMLAppTests: XCTestCase {
     }
 
     /// Prüft, dass ein Frame, der zu kurz nach dem letzten ankommt,
-    /// die Throttling-Bedingung nicht erfuellt (also verworfen werden muss).
+    /// die Throttling-Bedingung nicht erfüllt (also verworfen werden muss).
     func testThrottling_BlocksTooFrequentInferences() throws {
         let interval: TimeInterval = 0.5
         let lastTime = Date()

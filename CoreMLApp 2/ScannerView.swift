@@ -1,15 +1,22 @@
+//
+//  ScannerView.swift
+//  CoreMLApp
+//
+
 import SwiftUI
 
 struct ScannerView: View {
     @State private var viewModel = CameraViewModel()
+
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
-        
         ZStack {
+
             FrameView(image: viewModel.frame)
                 .ignoresSafeArea()
 
+            //for the bounding boxes
             GeometryReader { geometry in
                 ForEach(viewModel.detections) { det in
                     let rect = det.boundingBox
@@ -32,23 +39,26 @@ struct ScannerView: View {
                     .position(x: boxX + boxWidth/2, y: boxY + boxHeight/2)
                 }
             }
-        }
-        
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        .clipped()
-        
-        .overlay(alignment: .topLeading) {
-            Button {
-                viewModel.stopCamera()
-                dismiss()
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.title)
-                    .foregroundStyle(.white)
-                    .shadow(radius: 4)
-                    .padding(.top, 60) 
-                    .padding(.leading, 20)
+
+
+            VStack {
+                HStack {
+                    Button {
+                        viewModel.stopCamera()
+                        dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.title)
+                            .foregroundStyle(.white)
+                            .shadow(radius: 4)
+                            .padding(20)
+                    }
+                    Spacer()
+                }
+                Spacer()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .zIndex(1)
         }
         .onAppear {
             viewModel.loadSelectedModel()
@@ -60,4 +70,8 @@ struct ScannerView: View {
             viewModel.stopCamera()
         }
     }
+}
+
+#Preview {
+    ScannerView()
 }
